@@ -9,10 +9,6 @@ pipeline {
       }
     }
     stage('pip install') {
-      environment {
-        PATH='/usr/local/bin'
-      }
-
       steps {
         sh 'echo start pip install!!!'
         sh 'sudo easy_install pip'
