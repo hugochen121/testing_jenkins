@@ -11,7 +11,7 @@ pipeline {
     stage('pip install') {
       steps {
         sh 'echo start pip install!!!'
-        sh 'apt-get install python-pip'
+        sh 'sudo apt-get install python-pip'
         sh '/usr/local/bin/pip install -r requirements.txt'
       }
     }
