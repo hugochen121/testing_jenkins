@@ -11,7 +11,7 @@ pipeline {
     stage('pip install') {
       steps {
         sh 'echo start pip install!!!'
-        sh 'sudo easy_install pip'
+        sh 'easy_install pip'
         sh '/usr/local/bin/pip install -r requirements.txt'
       }
     }
