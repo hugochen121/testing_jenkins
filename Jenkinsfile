@@ -8,9 +8,11 @@ pipeline {
     }
     stage('pip install') {
       steps {
-        withEnv(["HOME=${env.WORKSPACE}"]){
-          sh 'echo start pip install!!!'
-          sh 'pip install --user -r requirements.txt'
+        withDockerContainer(image: 'python:3.6', args:'-u root:root'){
+        sh """
+            pip install --user -r requirements.txt
+            python WebChecker.py
+        """
         }
       }
     }
