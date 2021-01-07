@@ -8,9 +8,11 @@ pipeline {
     }
     stage('pip install') {
       steps {
+        withDockerContainer(image: 'python:3.6', args:'-u root:root'){
         sh """
             pip install --user -r requirements.txt
         """
+        }
       }
     }
     stage('test') {
