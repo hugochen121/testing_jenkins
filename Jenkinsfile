@@ -8,9 +8,10 @@ pipeline {
     }
     stage('pip install') {
       steps {
-        sh 'echo start pip install!!!'
-        
-        sh 'pip install -r requirements.txt'
+        withEnv(["HOME=${env.WORKSPACE}"]){
+          sh 'echo start pip install!!!'
+          sh 'pip install --user -r requirements.txt'
+        }
       }
     }
     stage('test') {
