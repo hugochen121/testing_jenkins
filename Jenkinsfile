@@ -1,24 +1,19 @@
-
-
 pipeline {
-  agent any
-  stages {
-    stage('build') {
-      steps {
-        sh 'echo building stage ah' 
-      }
+    agent none 
+    stages {
+        stage('Build') { 
+            agent {
+                docker {
+                    image 'python:2-alpine' 
+                }
+            }
+            steps {
+                sh 'python -m py_compile sources/add2vals.py sources/calc.py' 
+                stash(name: 'compiled-results', includes: 'sources/*.py*') 
+            }
+        }
     }
-    stage('pip install') {
-      steps {
-        sh 'echo start pip install!!!'
-        sh 'sudo apt-get install python-pip'
-        sh '/usr/local/bin/pip install -r requirements.txt'
-      }
-    }
-    stage('test') {
-      steps {
-        sh 'python test_calc.py'
-      }   
-    }
-  }
 }
+
+
+
