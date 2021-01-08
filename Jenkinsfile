@@ -11,7 +11,7 @@ pipeline {
         withDockerContainer(image: 'python:3.6', args:'-u root:root'){
         sh """
             pip install --user -r requirements.txt
-            pylint calc.py
+            
         """
         }
       }
